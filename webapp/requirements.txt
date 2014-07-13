@@ -1,4 +1,7 @@
 CherryPy==3.5.0
+Twisted==14.0.0
 ipython==2.1.0
 pyserial==2.7
+requests==2.3.0
 wsgiref==0.1.2
+zope.interface==4.1.1
