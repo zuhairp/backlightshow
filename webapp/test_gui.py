@@ -6,9 +6,9 @@ from Tkinter import *
 class TestGUI(object):
     def __init__(self, input_pipe):
         self.master = Tk()
-        self.canvas = Canvas(self.master, width=200, height=100)
+        self.canvas = Canvas(self.master, width=150, height=150)
         self.canvas.pack()
-        self.canvas.create_rectangle(50, 25, 150, 75, fill="#12BB45", tags='color_swatch')
+        self.canvas.create_rectangle(0, 0, 150, 150, fill="#12BB45", tags='color_swatch')
         self.pipe = input_pipe
 
 
