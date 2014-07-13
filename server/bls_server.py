@@ -16,7 +16,7 @@ the_mailbox = Queue(1)
 class BacklightshowApp(object):
     @cherrypy.expose
     def index(self):
-        return file('index.html')
+        return file('../webapp/index.html')
 
 class BacklightshowWebService(object):
     exposed = True
