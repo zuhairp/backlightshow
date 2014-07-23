@@ -1,45 +1,40 @@
-#frame-editor{
-	text-align:center;
-	background-color: white;
-	border-radius: 10px;
-	height: 100%;
+#app{
+    background-color: #EEEEEE;
 }
 
-#container{
-	background-color: #EEEEEE;
+#main-view{
+    background-color: white;
+    height: 100%;
+    padding-top:2%;
 }
 
-.frame-options{
-	padding: 10px;
-	border-style: solid;
+#nav-list{
+    margin-top:2%;
 }
 
-/*
-http://stackoverflow.com/questions/18158293/how-can-i-work-around-the-need-for-bootstrap-3s-form-control-class
-*/
-/*
-input {
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+.patch{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    display: inline-block;
 }
 
-input:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+.color-chooser-row{
+    margin-top: 2%;
+    font-size:2em;
 }
-*/
+
+#color-chooser{
+    height:auto;
+    font-size:1em;
+}
+
+.colorNameTableWrapper{
+}
+
+.colorNameTableBody > tr:hover {
+    cursor:pointer;
+    background-color:#ABBEEB;
+}
+

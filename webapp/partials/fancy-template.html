@@ -1,0 +1,28 @@
+<!--
+<frame-directive frame-model="myFrame">
+</frame-directive>
+-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4" style="margin-right:0px;padding-right:0px;">
+            <button type="button" class="btn btn-success btn-lg" ng-show="ProgramStateService.frames.length>0" style="margin-bottom:2%" ng-click="runProgram()">
+                Run <span class="glyphicon glyphicon-play"></span>
+            </button>
+        </div>
+        <div class="col-md-2" style="margin-left:0px;padding-left:0px">
+            <button type="button" class="btn btn-danger btn-lg" ng-show="ProgramStateService.frames.length>0" style="margin-bottom:2%" ng-click="stopProgram()">
+                Stop <span class="glyphicon glyphicon-stop"></span>
+            </button>
+        </div>
+    </div>
+    <div class="row" ng-repeat="theFrame in ProgramStateService.frames">
+        <frame-directive frame-model="theFrame" delete-pressed="deleteFrame($index)">
+        </frame-directive>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <button type="button" class="btn btn-primary btn-md" ng-click="addFrame()"> Add Frame </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Frame</h3></div>
+    <div class="panel-body">
+        <form role="form">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3">
+                    <input color-picker color-model="frameModel.color" ng-model="frameModel.color">
+                </div>
+                <button type="button" class="btn btn-danger btn-x">Delete Frame</button>
+            </div>
+            <div class="row" style="margin-top:2%">
+                <div class="col-md-3 col-md-offset-3">
+                    <label for="duration">Hold Time (seconds)</label>
+                    <input id="duration" class="form-control" ng-model="frameModel.duration"/>
+                </div> 
+                <div class="col-md-3" >
+                    <label for="transition">Transition (seconds)</label>
+                    <input id="transition" class="form-control" ng-model="frameModel.transition"/>
+                </div> 
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Set color name modal -->
+
+<div class="modal fade color-name-modal" tabIndex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                Find a color by name
+            </div>
+            <div class="modal-body">
+                <input name="color"  class="form-control filter" type="text" placeholder="Color or #Hex code"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="close-modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-modal">Set color</button>
+            </div>
+        </div>
+    </div>
+</div>

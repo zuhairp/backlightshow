@@ -2,31 +2,38 @@
     <head>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/style.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/libs/jscolor/jscolor.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.js"></script>
+        
+
+        <script src="/static/js/directives.js"></script>
+        <script src="/static/js/services.js"></script>
+        <script src="/static/js/controllers.js"></script>
+        <script src="/static/js/app.js"></script>
     </head>
     <body>
-        <div class="container-fluid" id="container">
+        <div class="container-fluid" id="app" ng-app="blsApp">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2" id="frame-editor">
-                    <div class="frame-options form-inline" id="frame-id-1">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label class="sr-only" for="color-1">Color</label>
-                                <div class="input-group-addon">#</div>
-                                <input type="text" class="form-control" id="color-1" placeholder="color" >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="duration-1">Duration</label>
-                            <input type="text" class="form-control" id="duration-1" placeholder="duration (s)">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="transition-1">Transition</label>
-                            <input type="text" class="form-control" id="transition-1" placeholder="transition (s)">
-                        </div>
+                <div class="col-md-2" id="left-nav">
+                    <ul class="nav nav-pills nav-stacked" id="nav-list" ng-controller="NavigationCtrl">
+                        <li class="nav-item" ng-class="{active:isActive('/basic')}"><a id="basic-list-item" href="#/basic">Simple</a></li>
+                        <li class="nav-item" ng-class="{active:isActive('/fancy')}"><a id="fancy-list-item" href="#/fancy">Fancy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-10" id="main-view">
+                    <div class="row" id="main-view-row">
+                        <div class="col-md-8 col-md-offset-2" id="content" ng-view></div>
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
 

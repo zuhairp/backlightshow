@@ -14,8 +14,8 @@ STEP_TIME = 0.025  # Running about 40Hz
 class Frame(object):
     def __init__(self, color, duration=1.0, transition=0):
         self.color = color
-        self.duration = duration # The duration to hold the color
-        self.transition = transition # The duration to transition to the next color
+        self.duration = float(duration) # The duration to hold the color
+        self.transition = float(transition) # The duration to transition to the next color
 
 
 def frame_generator(program):

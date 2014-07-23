@@ -17,6 +17,14 @@ class BacklightshowApp(object):
     @cherrypy.expose
     def index(self):
         return file('../webapp/index.html')
+    
+    #
+    # TODO: Make an entire colors api
+    #
+    @cherrypy.expose
+    def colors(self):
+        cherrypy.response.headers['Content-Type'] = 'application/json'
+        return file('colors.json')
 
 class BacklightshowWebService(object):
     exposed = True
@@ -89,7 +97,8 @@ if __name__ == '__main__':
     conf = {
         '/' : {
             'tools.sessions.on' : True,
-            'tools.staticdir.root' : os.path.abspath(os.getcwd())
+            'tools.staticdir.root' : os.path.abspath(os.getcwd()),
+            'tools.caching.on' : False
         },
         '/controller': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
@@ -98,7 +107,8 @@ if __name__ == '__main__':
         },
         '/static' : {
             'tools.staticdir.on' : True,
-            'tools.staticdir.dir' : './static_content'
+            'tools.staticdir.dir' : '../webapp',
+            'tools.caching.on' : False
         }
     }
     
@@ -108,6 +118,10 @@ if __name__ == '__main__':
 
     webapp = BacklightshowApp()
     webapp.controller = BacklightshowWebService()
+
+    cherrypy.engine.autoreload.unsubscribe()
+    cherrypy.server.socket_host = "10.0.1.18";
+
 
     cherrypy.quickstart(webapp, '/', conf)
 
