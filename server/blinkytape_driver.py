@@ -59,6 +59,7 @@ class BlinkytapeDriver(threading.Thread):
         super(BlinkytapeDriver, self).__init__()
         self.mailbox = mailbox
         self.color_generator = None
+        self.current_color = (0,0,0)
 
         if port == 'gui':
             # Start GUI process
@@ -108,6 +109,8 @@ class BlinkytapeDriver(threading.Thread):
         # Step 4
         if next_color is not None: 
             self.led.display_color(next_color)
+            self.current_color = next_color
+
 
         # Step 5
         time.sleep(STEP_TIME) 

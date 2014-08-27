@@ -1,22 +1,30 @@
 import os
 import json
+import socket
+import argparse
 from Queue import Queue
 
 import cherrypy
 
 import color_lookup
 
+from bls_config import *
 from blinkytape_driver import *
 from color_generators import Frame
 
+bls_directory = os.path.dirname(os.path.abspath(__file__))
 
 the_mailbox = Queue(1)
+#TODO: Don't open up the port right away...
+led_driver = BlinkytapeDriver(port=LED_SERIAL_PORT, mailbox=the_mailbox)
+led_driver.daemon = True
 
 
 class BacklightshowApp(object):
     @cherrypy.expose
     def index(self):
-        return file('../webapp/index.html')
+        file_name = "%s/../webapp/index.html" % bls_directory
+        return file(os.path.abspath(file_name))
     
     #
     # TODO: Make an entire colors api
@@ -37,7 +45,7 @@ class BacklightshowWebService(object):
     def GET(self):
         cherrypy.response.headers['Content-Type'] = 'application/json'
         response = {}
-        response['color'] = self.current_color
+        response['color'] = led_driver.current_color
         return json.dumps(response)
 
     def PUT(self, **data):
@@ -111,17 +119,19 @@ if __name__ == '__main__':
             'tools.caching.on' : False
         }
     }
-    
-    led_driver = BlinkytapeDriver(port='gui', mailbox=the_mailbox)
-    led_driver.daemon = True
-    led_driver.start()
 
+    # On startup, set the LEDs to white
+    startup_instruction = Instruction(command="color")
+    startup_instruction.color = (255,255,255)
+    the_mailbox.put(startup_instruction)
+
+    led_driver.start()
+    
     webapp = BacklightshowApp()
     webapp.controller = BacklightshowWebService()
 
     cherrypy.engine.autoreload.unsubscribe()
-    cherrypy.server.socket_host = "10.0.1.18";
-
+    cherrypy.server.socket_host = SERVER_ADDRESS
 
     cherrypy.quickstart(webapp, '/', conf)
 
