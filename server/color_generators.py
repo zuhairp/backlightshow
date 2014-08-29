@@ -118,11 +118,12 @@ def socket_color_generator():
     global socket_queue
     global socket_process
 
+    socket_queue = Queue()
     if socket_process is None:
         print "Starting socket process"
         socket_process = Process(target=run_socket_controller)
         socket_process.start()
-    
+
     while True:
         try: 
             yield socket_queue.get_nowait()

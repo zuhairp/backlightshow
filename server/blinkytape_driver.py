@@ -12,6 +12,8 @@ import threading
 from Queue import Queue, Empty
 from multiprocessing import Process, Pipe
 
+from blinkytape import BlinkyTape
+
 from color_generators import STEP_TIME, frame_generator, single_color_generator, socket_color_generator
 
 from test_gui import TestGUI
@@ -70,7 +72,7 @@ class BlinkytapeDriver(threading.Thread):
 
         else:
             # TODO: Implement actual LED stuff
-            self.led = open(port)
+            self.led = BlinkyTape(port) 
 
 
     def get_color_generator(self, instruction):
@@ -108,7 +110,8 @@ class BlinkytapeDriver(threading.Thread):
         next_color = self.color_generator.next()
         # Step 4
         if next_color is not None: 
-            self.led.display_color(next_color)
+            red, green, blue = next_color
+            self.led.displayColor(red, green, blue)
             self.current_color = next_color
 
 

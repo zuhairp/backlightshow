@@ -45,7 +45,9 @@ class BacklightshowWebService(object):
     def GET(self):
         cherrypy.response.headers['Content-Type'] = 'application/json'
         response = {}
-        response['color'] = led_driver.current_color
+        red, green, blue = led_driver.current_color
+        hex_color = color_lookup.rgb_to_hex(red, green, blue)
+        response['color'] = hex_color
         return json.dumps(response)
 
     def PUT(self, **data):

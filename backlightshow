@@ -1,0 +1,49 @@
+#!/usr/bin/python
+
+import json
+import argparse
+import requests
+
+DEFAULT_SERVER = 'http://192.168.1.65:8080'
+
+def get_led_color(url):
+    path = "%s/controller" % url
+    data = requests.get(path).content
+    state_data = json.loads(data)
+    print state_data['color']
+
+def set_led_color(url, color):
+    path = '%s/controller' % url
+    requests.put(path, data={'color':color})
+
+def led_setter_handler(args):
+    set_led_color(args.server, args.color)
+
+def led_getter_handler(args):
+    get_led_color(args.server)
+
+
+def build_led_parser(subparsers):
+    led_setter_parser = subparsers.add_parser('set-led', help="Set the color of the LEDs")
+    led_setter_parser.add_argument('color', type=str, help="The color to set the LED. Can be hex or a supported color name")
+    led_setter_parser.set_defaults(func=led_setter_handler)
+
+    led_getter_parser = subparsers.add_parser('get-led', help="Get the color of the LEDs")
+    led_getter_parser.set_defaults(func=led_getter_handler)
+
+
+def get_args():
+    parser = argparse.ArgumentParser(description="CLI interface to control backlightshow")
+    parser.add_argument("--server", type=str, help="bls server address", default=DEFAULT_SERVER)
+    subparsers = parser.add_subparsers()
+    build_led_parser(subparsers)
+    
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    args = get_args()
+    args.func(args)
+    
+    
+
+

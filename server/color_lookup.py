@@ -53,6 +53,9 @@ def get_hex_by_name(color_name, raise_exception=False):
 def hex_to_rgb(hex_color):
     red, green, blue = [int(hex_color[i:i+2], 16) for i in range(0, len(hex_color), 2)]
     return red, green, blue
+
+def rgb_to_hex(red, green, blue):
+    return "#%02X%02X%02X" % (red, green, blue)
 		
 
 
