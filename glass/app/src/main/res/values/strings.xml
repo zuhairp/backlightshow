@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Backlightshow Glass</string>
+    <string name="title_activity_backlightshow_live_card">Backlightshow Controller</string>
+    <string name="action_stop">Stop</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="bls_voice_trigger">set the lights</string>
+    <string name="bls_voice_prompt">what color?</string>
+
+    <string name="current_color_label">Current Color:</string>
+
+</resources>
