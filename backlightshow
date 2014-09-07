@@ -4,7 +4,7 @@ import json
 import argparse
 import requests
 
-DEFAULT_SERVER = 'http://192.168.1.65:8080'
+DEFAULT_SERVER = 'http://192.168.1.83:8080'
 
 def get_led_color(url):
     path = "%s/controller" % url
